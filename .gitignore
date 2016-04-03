@@ -1,2 +1,5 @@
-#
-.exe
+lib/
+.gradle
+.idea
+build/
+out/
