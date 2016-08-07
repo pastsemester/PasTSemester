@@ -5,30 +5,36 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import com.pastsemester.model.User;
-import com.pastsemester.model.UserProfile;
-import com.pastsemester.model.UserProfileType;
-import com.pastsemester.repository.UserRepository;
 import com.pastsemester.service.UserProfileService;
 import com.pastsemester.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
-import java.util.HashSet;
-import java.util.Set;
-
-import static java.util.UUID.randomUUID;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.NoHandlerFoundException;
 
 
-// TODO: CATCH ERRORS AND LOG THEM INSTEAD OF DISPLAYING THEM TO THE MAIN PAGE
+// TODO: CONFIRM PASSWORD VALIDATION
+// TODO: EMAIL VALIDATION
+// TODO: REDESIGN DATABASE
+// TODO: REDESIGN PAGE ACCESS
+// TODO: ADD CAPTCHA TO LOGIN AND REGISTER
+// TODO: ADD LOGGING
+// TODO: ADD PASSWORD ENCRYPTION
+// TODO: SEND EMAIL AFTER LOGIN FOR REGISTRATION
+// TODO: SESSION MANAGEMENT
+// TODO: REMEMBER ME FUNCTIONALITY
+// TODO: CANNOT CREATE ACCOUNTS WITH THE SAME EMAIL, USERNAME
+// TODO: NEED TO DO PROPER REGISTRATION VALIDATION
+// TODO: ADD HTTPS
+// TODO: CHANGE PAGE TO REFLECT SIGNIN
+// TODO: ADD ACCOUNT MENU SETTINGS
+// TODO: CUSTOM PAGE FOR ERRORS
 @Controller
 public class HelloWorldController {
 
@@ -41,20 +47,20 @@ public class HelloWorldController {
     @RequestMapping(value = {"/", "/home"}, method = RequestMethod.GET)
     public String homePage(ModelMap model) {
         model.addAttribute("user", getPrincipal());
-        return "welcome";
+        return "index";
     }
 
-    @RequestMapping(value = "/admin", method = RequestMethod.GET)
-    public String adminPage(ModelMap model) {
-        model.addAttribute("user", getPrincipal());
-        return "admin";
-    }
-
-    @RequestMapping(value = "/db", method = RequestMethod.GET)
-    public String dbaPage(ModelMap model) {
-        model.addAttribute("user", getPrincipal());
-        return "dba";
-    }
+//    @RequestMapping(value = "/admin", method = RequestMethod.GET)
+//    public String adminPage(ModelMap model) {
+//        model.addAttribute("user", getPrincipal());
+//        return "/admin";
+//    }
+//
+//    @RequestMapping(value = "/db", method = RequestMethod.GET)
+//    public String dbaPage(ModelMap model) {
+//        model.addAttribute("user", getPrincipal());
+//        return "dba";
+//    }
 
     @RequestMapping(value = "/Access_Denied", method = RequestMethod.GET)
     public String accessDeniedPage(ModelMap model) {
@@ -68,13 +74,14 @@ public class HelloWorldController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String registerPage(@Valid @ModelAttribute("user") User user) {
-        Set<UserProfile> userProfiles = new HashSet<>();
-        userProfiles.add(userProfileService.findByType(UserProfileType.USER.getUserProfileType()));
-        user.setUserProfiles(userProfiles);
+    public String registerUser(@Valid @ModelAttribute("user") User user) throws Exception {
         userService.save(user);
-
         return "login";
+    }
+
+    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    public String registerPage() {
+        return "register";
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
@@ -97,6 +104,4 @@ public class HelloWorldController {
         }
         return userName;
     }
-
-
 }

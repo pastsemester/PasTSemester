@@ -1,0 +1,194 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>UniLearn - Education and Courses Template</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <!-- style -->
+    <link th:href="@{/assets/img/favicon.png}" rel="stylesheet"/>
+    <link th:href="@{/assets/css/font-awesome.css}" rel="stylesheet"/>
+    <link th:href="@{/assets/css/select2.css}" rel="stylesheet"/>
+    <link th:href="@{/assets/css/main.css}" rel="stylesheet"/>
+    <link th:href="@{/assets/css/owl.carousel.css}" rel="stylesheet"/>
+    <link th:href="@{/assets/css/jquery.fancybox.css}" rel="stylesheet"/>
+    <!--styles -->
+</head>
+<body class="">
+<div th:replace="fragments/header :: header"></div>
+<main>
+    <section class="fullwidth-background bg-2">
+        <div class="grid-row">
+            <div class="login-block">
+                <div class="logo">
+                    <img th:src="@{/assets/img/logo.png}" data-at2x='img/logo@2x.png' alt>
+                    <h2>uniLearn</h2>
+                </div>
+                <form th:action="@{/register}" method="post" class="login-form">
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+
+                    <div class="form-group">
+                        <input name="ssoId" type="text" class="login-input" placeholder="Username"
+                               required="required">
+                        <span class="input-icon">
+								<i class="fa fa-user"></i>
+							</span>
+                    </div>
+                    <div class="form-group">
+                        <input id="firstname" name="firstName" required="required" type="text"
+                               placeholder="First Name"/>
+                        <span class="input-icon">
+								<i class="fa fa-user"></i>
+							</span>
+                    </div>
+                    <div class="form-group">
+                        <input id="lastname" name="lastName" required="required" type="text"
+                               placeholder="Last Name"/>
+                        <span class="input-icon">
+								<i class="fa fa-user"></i>
+							</span>
+                    </div>
+                    <div class="form-group">
+                        <input name="email" type="text" class="login-input" placeholder="Email" required="required">
+                        <span class="input-icon">
+								<i class="fa fa-envelope-o"></i>
+							</span>
+                    </div>
+                    <div class="form-group">
+                        <input name="password" type="password" class="login-input" placeholder="Pasword"
+                               required="required">
+                        <span class="input-icon">
+								<i class="fa fa-lock"></i>
+							</span>
+                    </div>
+                    <div class="form-group">
+                        <input name="passwordConfirm" type="password" class="login-input" placeholder="Confirm pasword"
+                               required="required">
+                        <span class="input-icon">
+								<i class="fa fa-lock"></i>
+							</span>
+                    </div>
+                    <input class="button-fullwidth cws-button bt-color-3 border-radius" type="submit" value="CREATE AN ACCOUNT"/>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
+<!-- footer -->
+<footer>
+    <div class="grid-row">
+        <div class="grid-col-row clear-fix">
+            <section class="grid-col grid-col-4 footer-about">
+                <h2 class="corner-radius">About Us</h2>
+                <div>
+                    <h3>Sed aliquet dui auctor blandit ipsum tincidunt</h3>
+                    <p>Quis rhoncus lorem dolor eu sem. Aenean enim risus, convallis id ultrices eget.</p>
+                </div>
+                <address>
+                    <p></p>
+                    <a href="tel:123-123456789" class="phone-number">123-123456789</a>
+                    <br/>
+                    <a href="mailto:uni@domain.com" class="email">uni@domain.com</a>
+                    <br/>
+                    <a href="www.sample.com" class="site">www.sample.com</a>
+                    <br/>
+                    <a href="www.sample.com" class="address">250 Biscayne Blvd. (North) 11st Floor<br/>New World Tower
+                        Miami, 33148</a>
+                </address>
+                <div class="footer-social">
+                    <a href="" class="fa fa-twitter"></a>
+                    <a href="" class="fa fa-skype"></a>
+                    <a href="" class="fa fa-google-plus"></a>
+                    <a href="" class="fa fa-rss"></a>
+                    <a href="" class="fa fa-youtube"></a>
+                </div>
+            </section>
+            <section class="grid-col grid-col-4 footer-latest">
+                <h2 class="corner-radius">Latest courses</h2>
+                <article>
+                    <img src="http://placehold.it/83x83" data-at2x="http://placehold.it/83x83" alt>
+                    <h3>Sed aliquet dui at auctor blandit</h3>
+                    <div class="course-date">
+                        <div>10<sup>00</sup></div>
+                        <div>23.02.15</div>
+                    </div>
+                    <p>Sed pharetra lorem ut dolor dignissim,
+                        sit amet pretium tortor mattis.</p>
+                </article>
+                <article>
+                    <img src="http://placehold.it/83x83" data-at2x="http://placehold.it/83x83" alt>
+                    <h3>Sed aliquet dui at auctor blandit</h3>
+                    <div class="course-date">
+                        <div>10<sup>00</sup></div>
+                        <div>23.02.15</div>
+                    </div>
+                    <p>Sed pharetra lorem ut dolor dignissim,
+                        sit amet pretium tortor mattis.</p>
+                </article>
+            </section>
+            <section class="grid-col grid-col-4 footer-contact-form">
+                <h2 class="corner-radius">apply for instructor</h2>
+                <div class="email_server_responce"></div>
+                <form action="../../UniLearn/php/contacts-process.php" class="contact-form" method="post"
+                      novalidate="novalidate">
+                    <p><span class="your-name"><input type="text" name="name" value="" size="40" placeholder="Name"
+                                                      aria-invalid="false" required></span>
+                    </p>
+                    <p><span class="your-email"><input type="text" name="phone" value="" size="40" placeholder="Phone"
+                                                       aria-invalid="false" required></span></p>
+                    <p><span class="your-message"><textarea name="message" placeholder="Comments" cols="40" rows="5"
+                                                            aria-invalid="false" required></textarea></span></p>
+                    <button type="submit" class="cws-button bt-color-3 border-radius alt icon-right">Submit <i
+                            class="fa fa-angle-right"></i></button>
+                </form>
+            </section>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="grid-row clear-fix">
+            <div class="copyright">uniLearn<span></span> 2015 . All Rights Reserved</div>
+            <!-- footer nav -->
+            <nav class="footer-nav">
+                <ul class="clear-fix">
+                    <li>
+                        <a href="index.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="courses-grid.html">Courses</a>
+                    </li>
+                    <li>
+                        <a href="content-elements.html">Plans</a>
+                    </li>
+                    <li>
+                        <a href="blog-default.html">News</a>
+                    </li>
+                    <li>
+                        <a href="page-about-us.html">Pages</a>
+                    </li>
+                    <li>
+                        <a href="contact-us.html">Contact</a>
+                    </li>
+                </ul>
+            </nav>
+            <!-- footer nav -->
+        </div>
+    </div>
+</footer>
+<!-- footer -->
+<!-- scripts -->
+<script th:src="@{/assets/js/jquery.min.js}"></script>
+<script type='text/javascript' th:src="@{/assets/js/jquery.validate.min.js}"></script>
+<script th:src="@{/assets/js/jquery.form.min.js}"></script>
+<script th:src="@{/assets/js/TweenMax.min.js}"></script>
+<script th:src="@{/assets/js/main.js}"></script>
+<script th:src="@{/assets/js/select2.js}"></script>
+<script th:src="@{/assets/js/jquery.isotope.min.js}"></script>
+<script th:src="@{/assets/js/owl.carousel.min.js}"></script>
+<script th:src="@{/assets/js/jquery-ui.min.js}"></script>
+<script th:src="@{/assets/js/jflickrfeed.min.js}"></script>
+<script th:src="@{/assets/js/jquery.fancybox.pack.js}"></script>
+<script th:src="@{/assets/js/jquery.fancybox-media.js}"></script>
+<script th:src="@{/assets/js/retina.min.js}"></script>
+<script th:src="@{/assets/js/jquery.tweet.js}"></script>
+<!-- scripts -->
+</body>
+</html>
